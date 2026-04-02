@@ -8,7 +8,7 @@ import itertools
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from colorama import Fore, Style, init
 
-# Initialize Colorama
+
 init(autoreset=True)
 
 class FMMVChecker:
@@ -17,10 +17,10 @@ class FMMVChecker:
         self.load_proxies()
         self.api_url = "https://discord.com/api/v9/unique-username/username-attempt-unauthed"
         
-        # Cloud Logic: Session Persistence to avoid "Cold Connection" flags
+        
         self.session = requests.Session()
         
-        # Cloud Logic: Infinite Proxy Cycling
+        
         if self.proxies:
             self.proxy_cycle = itertools.cycle(self.proxies)
         else:
@@ -53,12 +53,12 @@ class FMMVChecker:
         return {"http": next(self.proxy_cycle), "https": next(self.proxy_cycle)}
 
     def send_webhook(self, username):
-        # Simplified Webhook as requested
+        
         payload = {
             "embeds": [{
-                "title": "Hit Available 🎯",
-                "description": f"Username: **{username}**",
-                "color": 1752220, # Green
+                "title": "Available",
+                "description": f"`{username}`",
+                "color": 0,
             }]
         }
         try:
@@ -104,7 +104,7 @@ class FMMVChecker:
                         return False
                 
                 elif response.status_code == 429:
-                    # If rate limited, skip this proxy and try next one in cycle immediately
+                    
                     attempts += 1
                     continue 
                 
@@ -145,10 +145,10 @@ def main():
         except:
             print(f"{Fore.RED}[!] list.txt not found."); return
     else:
-        # Buffer to fill the thread pool
+        
         usernames = [generate_user(choice) for _ in range(100)]
 
-    # Concurrency control via Threads
+    
     with ThreadPoolExecutor(max_workers=checker.config['threads']) as executor:
         futures = {executor.submit(checker.check_username, u): u for u in usernames}
         
