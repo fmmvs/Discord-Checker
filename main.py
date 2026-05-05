@@ -44,7 +44,7 @@ class FMMVChecker:
             if not self.proxies:
                 print(f"{Fore.YELLOW}[*] No proxies found in proxy.txt.")
             else:
-                print(f"{Fore.CYAN}[*] Loaded {len(self.proxies)} proxies into rotation.")
+                print(f"{Fore.GREEN}[*] Loaded {len(self.proxies)} proxies into rotation.")
         except FileNotFoundError:
             self.proxies = []
 
@@ -126,16 +126,16 @@ def generate_user(mode):
 
 def main():
     checker = FMMVChecker()
-    print(f"\n{Fore.BLUE}╔══════════════════════════════════════════════╗")
-    print(f"{Fore.BLUE}║                 FMMV CHECKER                 ║")
-    print(f"{Fore.BLUE}║            Made by @fmmv on Discord          ║")
-    print(f"{Fore.BLUE}╚══════════════════════════════════════════════╝")
-    print(f"{Fore.WHITE}1. Load list.txt")
-    print(f"{Fore.WHITE}2. Random 4-character (Mixed)")
-    print(f"{Fore.WHITE}3. Random 4-letter")
-    print(f"{Fore.WHITE}4. Random 3-character")
+    print(f"\n{Fore.WHITE}╔══════════════════════════════════════════════╗")
+    print(f"{Fore.WHITE}║                 FMMV CHECKER                 ║")
+    print(f"{Fore.WHITE}║            Made by @fmmv on Discord          ║")
+    print(f"{Fore.WHITE}╚══════════════════════════════════════════════╝")
+    print(f"{Fore.WHITE}1. list.txt")
+    print(f"{Fore.WHITE}2. Random 4C")
+    print(f"{Fore.WHITE}3. Random 4L")
+    print(f"{Fore.WHITE}4. Random 3C")
     
-    choice = input(f"\n{Fore.CYAN}Select Mode: ")
+    choice = input(f"\n{Fore.GREEN}Select Mode: ")
     
     usernames = []
     if choice == '1':
